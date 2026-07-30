@@ -149,7 +149,7 @@ public struct CameraStoryHomeView: View {
                 .buttonStyle(CardPressStyle())
                 .padding(.horizontal)
                 
-                // Testing: Pick from Photo Library
+                // Option: Pick from Photo Library
                 PhotosPicker(
                     selection: $selectedPhotoItem,
                     matching: .images,
@@ -158,7 +158,7 @@ public struct CameraStoryHomeView: View {
                     HStack(spacing: 8) {
                         Image(systemName: "photo.on.rectangle.angled")
                             .font(.system(size: 18, weight: .bold))
-                        Text("Pick from Photos (Testing)")
+                        Text("Upload Image from Gallery 🖼️")
                             .font(.system(size: 16, weight: .bold, design: .rounded))
                     }
                     .foregroundStyle(Color(red: 0.48, green: 0.24, blue: 0.93))
