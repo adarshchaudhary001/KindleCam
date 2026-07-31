@@ -37,6 +37,8 @@ public struct CameraStoryHomeView: View {
                 homeContent
             case .capturing, .detectingObjects, .generatingStory:
                 CameraCaptureView(viewModel: viewModel)
+            case .reviewing:
+                ImageAnnotationView(viewModel: viewModel)
             case .adventure:
                 StoryAdventureView(viewModel: viewModel)
             case .completed:
@@ -58,8 +60,7 @@ public struct CameraStoryHomeView: View {
             Task {
                 if let data = try? await newItem.loadTransferable(type: Data.self),
                    let image = UIImage(data: data) {
-                    viewModel.phase = .detectingObjects
-                    await viewModel.processCapture(image)
+                    viewModel.startReview(with: image)
                 }
                 selectedPhotoItem = nil
             }
