@@ -2,9 +2,9 @@
 //  CameraCaptureView.swift
 //  KindleCam
 //
-//  Child-friendly camera capture view using AVFoundation.
-//  Displays a live camera preview on device, or a rich simulated camera viewfinder in simulator.
-//  Allows taking live photos, simulated photos, or selecting from photo gallery.
+//  Child-friendly native camera capture view using AVFoundation.
+//  Matches native iOS Camera app behavior with auto-focus, aspect fill, motion-relative orientation.
+//  On capture/selection, passes image to ViewModel review stage.
 //
 
 import SwiftUI
@@ -170,8 +170,7 @@ public struct CameraCaptureView: View {
             Task {
                 if let data = try? await newItem.loadTransferable(type: Data.self),
                    let image = UIImage(data: data) {
-                    viewModel.phase = .detectingObjects
-                    await viewModel.processCapture(image)
+                    viewModel.startReview(with: image)
                 }
                 selectedPhotoItem = nil
             }
@@ -248,19 +247,18 @@ public struct CameraCaptureView: View {
     private func triggerCapture() {
         viewModel.phase = .capturing
         
+        let handleImage: (UIImage) -> Void = { image in
+            viewModel.startReview(with: image)
+        }
+        
         if !forceSimulatedMode && cameraManager.isCameraAvailable && cameraManager.isPermissionGranted {
             cameraManager.capturePhoto { image in
                 let captureImage = image ?? self.selectedSimulatedScene.generateImage()
-                Task {
-                    await viewModel.processCapture(captureImage)
-                }
+                handleImage(captureImage)
             }
         } else {
-            // Simulator or Manual Mode: Use selected simulated scene image
             let simulatedImage = selectedSimulatedScene.generateImage()
-            Task {
-                await viewModel.processCapture(simulatedImage)
-            }
+            handleImage(simulatedImage)
         }
     }
 }
@@ -417,6 +415,19 @@ private class CameraManager: NSObject, ObservableObject, AVCapturePhotoCaptureDe
             return
         }
         
+        // Native camera focus and exposure configuration
+        try? camera.lockForConfiguration()
+        if camera.isFocusModeSupported(.continuousAutoFocus) {
+            camera.focusMode = .continuousAutoFocus
+        }
+        if camera.isExposureModeSupported(.continuousAutoExposure) {
+            camera.exposureMode = .continuousAutoExposure
+        }
+        if camera.isWhiteBalanceModeSupported(.continuousAutoWhiteBalance) {
+            camera.whiteBalanceMode = .continuousAutoWhiteBalance
+        }
+        camera.unlockForConfiguration()
+        
         captureSession.beginConfiguration()
         captureSession.sessionPreset = .photo
         
@@ -466,7 +477,19 @@ private class CameraManager: NSObject, ObservableObject, AVCapturePhotoCaptureDe
             return
         }
         photoContinuation = completion
+        
         let settings = AVCapturePhotoSettings()
+        if let connection = photoOutput.connection(with: .video), connection.isVideoOrientationSupported {
+            let orientation = UIDevice.current.orientation
+            switch orientation {
+            case .portrait: connection.videoOrientation = .portrait
+            case .portraitUpsideDown: connection.videoOrientation = .portraitUpsideDown
+            case .landscapeLeft: connection.videoOrientation = .landscapeRight
+            case .landscapeRight: connection.videoOrientation = .landscapeLeft
+            default: connection.videoOrientation = .portrait
+            }
+        }
+        
         photoOutput.capturePhoto(with: settings, delegate: self)
     }
     
@@ -482,7 +505,7 @@ private class CameraManager: NSObject, ObservableObject, AVCapturePhotoCaptureDe
     }
 }
 
-// MARK: - Camera Preview UIViewRepresentable with layerClass override
+// MARK: - Camera Preview UIViewRepresentable with layerClass override & motion relative orientation
 
 private struct CameraPreviewRepresentable: UIViewRepresentable {
     let session: AVCaptureSession
@@ -512,7 +535,14 @@ private class PreviewContainerView: UIView {
         super.layoutSubviews()
         previewLayer.frame = bounds
         if let connection = previewLayer.connection, connection.isVideoOrientationSupported {
-            connection.videoOrientation = .portrait
+            let orientation = UIDevice.current.orientation
+            switch orientation {
+            case .portrait: connection.videoOrientation = .portrait
+            case .portraitUpsideDown: connection.videoOrientation = .portraitUpsideDown
+            case .landscapeLeft: connection.videoOrientation = .landscapeRight
+            case .landscapeRight: connection.videoOrientation = .landscapeLeft
+            default: connection.videoOrientation = .portrait
+            }
         }
     }
 }
