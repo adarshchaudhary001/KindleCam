@@ -16,6 +16,7 @@ import Observation
 public enum StoryPhase: Equatable {
     case idle
     case capturing
+    case reviewing
     case detectingObjects
     case generatingStory
     case adventure
@@ -78,25 +79,40 @@ public final class CameraStoryViewModel {
     
     // MARK: - Feature Flow
     
-    /// Step 1: Called when the child takes a photo.
-    public func processCapture(_ image: UIImage) async {
+    /// Step 1: Called when the child takes a photo — shows review screen.
+    public func startReview(with image: UIImage) {
         capturedImage = image
+        phase = .reviewing
+    }
+    
+    /// Step 2: Called from ImageAnnotationView when user finishes circling objects.
+    public func processAnnotatedRegions(circles: [CGRect], in viewSize: CGSize) async {
+        guard let image = capturedImage else { return }
         phase = .detectingObjects
         errorMessage = nil
         
-        // Step 2: Detect objects using Vision
-        let objects = await visionDetector.detectObjects(in: image)
-        detectedObjects = objects
+        var allObjects: [CapturedObject] = []
         
-        // Step 3: Generate story from detected objects
+        for circle in circles {
+            let croppedImage = cropImage(image, circleRect: circle, viewSize: viewSize)
+            let objects = await visionDetector.detectObjects(in: croppedImage)
+            allObjects.append(contentsOf: objects)
+        }
+        
+        let dedupedObjects = deduplicate(objects: allObjects)
+        detectedObjects = dedupedObjects
+        
+        await continueWithDetectedObjects(dedupedObjects)
+    }
+    
+    /// Shared logic after objects are detected — generates story, creates records, transitions to adventure.
+    private func continueWithDetectedObjects(_ objects: [CapturedObject]) async {
         phase = .generatingStory
         let generatedContent = await storyGenerator.generateStory(from: objects)
         
-        // Step 4: Create SwiftData records and transition to adventure
         storyTitle = generatedContent.title
         storyText = generatedContent.story
         
-        // Convert GeneratedTaskContent → StoryTask
         var storyTasks: [StoryTask] = []
         for (index, taskContent) in generatedContent.tasks.enumerated() {
             let payloadJSON = encodePayload(taskContent.payload)
@@ -114,10 +130,7 @@ public final class CameraStoryViewModel {
         
         tasks = storyTasks
         currentTaskIndex = 0
-        
-        // Persist to SwiftData
         persistStory(generatedContent: generatedContent, tasks: storyTasks)
-        
         phase = .adventure
     }
     
@@ -224,5 +237,65 @@ public final class CameraStoryViewModel {
             return "{}"
         }
         return jsonString
+    }
+    
+    /// Crop the precise region selected by the child (via finger or Apple Pencil).
+    /// Safely maps view-space coordinates to image pixel coordinates with strict boundary checks.
+    private func cropImage(_ image: UIImage, circleRect: CGRect, viewSize: CGSize) -> UIImage {
+        guard let cgImage = image.cgImage, viewSize.width > 0, viewSize.height > 0 else {
+            return image
+        }
+        
+        let pixelWidth = CGFloat(cgImage.width)
+        let pixelHeight = CGFloat(cgImage.height)
+        
+        // Calculate aspect fit drawing rect within the container view
+        let scale = min(viewSize.width / image.size.width, viewSize.height / image.size.height)
+        let drawWidth = image.size.width * scale
+        let drawHeight = image.size.height * scale
+        let xOffset = (viewSize.width - drawWidth) / 2
+        let yOffset = (viewSize.height - drawHeight) / 2
+        
+        // Map circleRect from view space to image point space
+        let imagePointX = (circleRect.origin.x - xOffset) / scale
+        let imagePointY = (circleRect.origin.y - yOffset) / scale
+        let imagePointW = circleRect.width / scale
+        let imagePointH = circleRect.height / scale
+        
+        // Convert image points to CGImage pixel coordinates
+        let pixelScaleX = pixelWidth / image.size.width
+        let pixelScaleY = pixelHeight / image.size.height
+        
+        var pixelX = imagePointX * pixelScaleX
+        var pixelY = imagePointY * pixelScaleY
+        var pixelW = imagePointW * pixelScaleX
+        var pixelH = imagePointH * pixelScaleY
+        
+        // Clamp crop bounds strictly within CGImage pixel dimensions
+        pixelX = max(0, min(pixelX, pixelWidth - 1))
+        pixelY = max(0, min(pixelY, pixelHeight - 1))
+        pixelW = max(1, min(pixelW, pixelWidth - pixelX))
+        pixelH = max(1, min(pixelH, pixelHeight - pixelY))
+        
+        let pixelCropRect = CGRect(x: pixelX, y: pixelY, width: pixelW, height: pixelH)
+        
+        if let croppedCGImage = cgImage.cropping(to: pixelCropRect) {
+            return UIImage(cgImage: croppedCGImage, scale: image.scale, orientation: image.imageOrientation)
+        }
+        return image
+    }
+    
+    /// Deduplicate detected objects by label, keeping highest confidence.
+    private func deduplicate(objects: [CapturedObject]) -> [CapturedObject] {
+        var seenLabels = Set<String>()
+        var result: [CapturedObject] = []
+        for obj in objects.sorted(by: { $0.confidence > $1.confidence }) {
+            let key = obj.label.lowercased().trimmingCharacters(in: .whitespaces)
+            if !key.isEmpty && !seenLabels.contains(key) {
+                seenLabels.insert(key)
+                result.append(obj)
+            }
+        }
+        return result
     }
 }

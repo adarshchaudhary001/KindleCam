@@ -40,6 +40,12 @@ public final class StoryGeneratorService: Sendable {
     #if canImport(FoundationModels)
     @available(iOS 26.0, *)
     private func generateWithFoundationModels(objectLabels: [String]) async -> GeneratedStoryContent? {
+        let model = SystemLanguageModel.default
+        guard model.isAvailable else {
+            print("[StoryGeneratorService] SystemLanguageModel is unavailable, falling back to template story.")
+            return nil
+        }
+        
         let objectList = objectLabels.joined(separator: ", ")
         let prompt = """
         You are a children's storyteller for ages 3-7. Create a short, magical adventure story \
@@ -91,7 +97,12 @@ public final class StoryGeneratorService: Sendable {
                 return parsed
             }
         } catch {
-            print("[StoryGeneratorService] Foundation Models error: \(error)")
+            let errorString = String(describing: error)
+            if errorString.contains("unsupportedLanguageOrLocale") || errorString.contains("Unsupported language") {
+                print("[StoryGeneratorService] Apple Foundation Models requires Primary Language set to English (en_US). Using template story fallback.")
+            } else {
+                print("[StoryGeneratorService] Foundation Models generation error: \(error)")
+            }
         }
         
         return nil
