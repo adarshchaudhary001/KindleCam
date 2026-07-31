@@ -1,0 +1,40 @@
+{
+  "source": "/Users/aakashsinghranswal/Desktop/projects/KindleCam/KindleCam/Views/CameraStory/ImageAnnotationView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Looking at your picture... 🔍",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 59
+        }
+      },
+      {
+        "comment": "",
+        "key": "Draw around objects with Finger or Pencil ✏️",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 140
+        }
+      },
+      {
+        "comment": "",
+        "key": "Explore Whole Picture ✨",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 172
+        }
+      },
+      {
+        "comment": "",
+        "key": "Discover My Objects! (%lld) ✨",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 189
+        }
+      }
+    ]
+  },
+  "version": 1
+}
