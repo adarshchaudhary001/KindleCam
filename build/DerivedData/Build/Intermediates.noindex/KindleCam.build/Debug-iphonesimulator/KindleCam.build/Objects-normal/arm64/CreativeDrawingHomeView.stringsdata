@@ -1,0 +1,56 @@
+{
+  "source": "/Users/aakashsinghranswal/Desktop/projects/KindleCam/KindleCam/Views/Drawing/CreativeDrawingHomeView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Creative Drawing",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 107
+        }
+      },
+      {
+        "comment": "",
+        "key": "Creative Drawing",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 34
+        }
+      },
+      {
+        "comment": "",
+        "key": "Canvas & Templates",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 38
+        }
+      },
+      {
+        "comment": "",
+        "key": "Express Your Creativity",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 62
+        }
+      },
+      {
+        "comment": "",
+        "key": "Draw freely on digital canvases or pick fun templates to color and create!",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 66
+        }
+      },
+      {
+        "comment": "",
+        "key": "Start Creative Doodle Studio",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 87
+        }
+      }
+    ]
+  },
+  "version": 1
+}

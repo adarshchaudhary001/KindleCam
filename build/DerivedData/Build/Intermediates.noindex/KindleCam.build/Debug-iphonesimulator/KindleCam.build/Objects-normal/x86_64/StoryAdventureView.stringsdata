@@ -1,0 +1,64 @@
+{
+  "source": "/Users/aakashsinghranswal/Desktop/projects/KindleCam/KindleCam/Views/CameraStory/StoryAdventureView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "📖",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 125
+        }
+      },
+      {
+        "comment": "",
+        "key": "💬",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 167
+        }
+      },
+      {
+        "comment": "",
+        "key": "🎉",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 188
+        }
+      },
+      {
+        "comment": "",
+        "key": "💪",
+        "location": {
+          "startingColumn": 57,
+          "startingLine": 188
+        }
+      },
+      {
+        "comment": "",
+        "key": "Finish! 🏆",
+        "location": {
+          "startingColumn": 64,
+          "startingLine": 224
+        }
+      },
+      {
+        "comment": "",
+        "key": "Next →",
+        "location": {
+          "startingColumn": 81,
+          "startingLine": 224
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 269
+        }
+      }
+    ]
+  },
+  "version": 1
+}

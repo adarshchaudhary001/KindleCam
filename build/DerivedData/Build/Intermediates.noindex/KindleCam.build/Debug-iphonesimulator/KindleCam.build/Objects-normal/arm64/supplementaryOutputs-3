@@ -1,0 +1,30 @@
+{
+  "/Users/aakashsinghranswal/Desktop/projects/KindleCam/KindleCam/Models/Drawing/DoodleObject.swift" : {
+    "const-values" : "/Users/aakashsinghranswal/Desktop/projects/KindleCam/build/DerivedData/Build/Intermediates.noindex/KindleCam.build/Debug-iphonesimulator/KindleCam.build/Objects-normal/arm64/DoodleObject.swiftconstvalues",
+    "dependencies" : "/Users/aakashsinghranswal/Desktop/projects/KindleCam/build/DerivedData/Build/Intermediates.noindex/KindleCam.build/Debug-iphonesimulator/KindleCam.build/Objects-normal/arm64/DoodleObject.d",
+    "diagnostics" : "/Users/aakashsinghranswal/Desktop/projects/KindleCam/build/DerivedData/Build/Intermediates.noindex/KindleCam.build/Debug-iphonesimulator/KindleCam.build/Objects-normal/arm64/DoodleObject.dia",
+    "object" : "/Users/aakashsinghranswal/Desktop/projects/KindleCam/build/DerivedData/Build/Intermediates.noindex/KindleCam.build/Debug-iphonesimulator/KindleCam.build/Objects-normal/arm64/DoodleObject.o",
+    "swift-dependencies" : "/Users/aakashsinghranswal/Desktop/projects/KindleCam/build/DerivedData/Build/Intermediates.noindex/KindleCam.build/Debug-iphonesimulator/KindleCam.build/Objects-normal/arm64/DoodleObject.swiftdeps"
+  },
+  "/Users/aakashsinghranswal/Desktop/projects/KindleCam/KindleCam/Models/Drawing/DrawingTemplate.swift" : {
+    "const-values" : "/Users/aakashsinghranswal/Desktop/projects/KindleCam/build/DerivedData/Build/Intermediates.noindex/KindleCam.build/Debug-iphonesimulator/KindleCam.build/Objects-normal/arm64/DrawingTemplate.swiftconstvalues",
+    "dependencies" : "/Users/aakashsinghranswal/Desktop/projects/KindleCam/build/DerivedData/Build/Intermediates.noindex/KindleCam.build/Debug-iphonesimulator/KindleCam.build/Objects-normal/arm64/DrawingTemplate.d",
+    "diagnostics" : "/Users/aakashsinghranswal/Desktop/projects/KindleCam/build/DerivedData/Build/Intermediates.noindex/KindleCam.build/Debug-iphonesimulator/KindleCam.build/Objects-normal/arm64/DrawingTemplate.dia",
+    "object" : "/Users/aakashsinghranswal/Desktop/projects/KindleCam/build/DerivedData/Build/Intermediates.noindex/KindleCam.build/Debug-iphonesimulator/KindleCam.build/Objects-normal/arm64/DrawingTemplate.o",
+    "swift-dependencies" : "/Users/aakashsinghranswal/Desktop/projects/KindleCam/build/DerivedData/Build/Intermediates.noindex/KindleCam.build/Debug-iphonesimulator/KindleCam.build/Objects-normal/arm64/DrawingTemplate.swiftdeps"
+  },
+  "/Users/aakashsinghranswal/Desktop/projects/KindleCam/KindleCam/Models/Drawing/SavedDrawing.swift" : {
+    "const-values" : "/Users/aakashsinghranswal/Desktop/projects/KindleCam/build/DerivedData/Build/Intermediates.noindex/KindleCam.build/Debug-iphonesimulator/KindleCam.build/Objects-normal/arm64/SavedDrawing.swiftconstvalues",
+    "dependencies" : "/Users/aakashsinghranswal/Desktop/projects/KindleCam/build/DerivedData/Build/Intermediates.noindex/KindleCam.build/Debug-iphonesimulator/KindleCam.build/Objects-normal/arm64/SavedDrawing.d",
+    "diagnostics" : "/Users/aakashsinghranswal/Desktop/projects/KindleCam/build/DerivedData/Build/Intermediates.noindex/KindleCam.build/Debug-iphonesimulator/KindleCam.build/Objects-normal/arm64/SavedDrawing.dia",
+    "object" : "/Users/aakashsinghranswal/Desktop/projects/KindleCam/build/DerivedData/Build/Intermediates.noindex/KindleCam.build/Debug-iphonesimulator/KindleCam.build/Objects-normal/arm64/SavedDrawing.o",
+    "swift-dependencies" : "/Users/aakashsinghranswal/Desktop/projects/KindleCam/build/DerivedData/Build/Intermediates.noindex/KindleCam.build/Debug-iphonesimulator/KindleCam.build/Objects-normal/arm64/SavedDrawing.swiftdeps"
+  },
+  "/Users/aakashsinghranswal/Desktop/projects/KindleCam/KindleCam/Models/Shared/DifficultyLevel.swift" : {
+    "const-values" : "/Users/aakashsinghranswal/Desktop/projects/KindleCam/build/DerivedData/Build/Intermediates.noindex/KindleCam.build/Debug-iphonesimulator/KindleCam.build/Objects-normal/arm64/DifficultyLevel.swiftconstvalues",
+    "dependencies" : "/Users/aakashsinghranswal/Desktop/projects/KindleCam/build/DerivedData/Build/Intermediates.noindex/KindleCam.build/Debug-iphonesimulator/KindleCam.build/Objects-normal/arm64/DifficultyLevel.d",
+    "diagnostics" : "/Users/aakashsinghranswal/Desktop/projects/KindleCam/build/DerivedData/Build/Intermediates.noindex/KindleCam.build/Debug-iphonesimulator/KindleCam.build/Objects-normal/arm64/DifficultyLevel.dia",
+    "object" : "/Users/aakashsinghranswal/Desktop/projects/KindleCam/build/DerivedData/Build/Intermediates.noindex/KindleCam.build/Debug-iphonesimulator/KindleCam.build/Objects-normal/arm64/DifficultyLevel.o",
+    "swift-dependencies" : "/Users/aakashsinghranswal/Desktop/projects/KindleCam/build/DerivedData/Build/Intermediates.noindex/KindleCam.build/Debug-iphonesimulator/KindleCam.build/Objects-normal/arm64/DifficultyLevel.swiftdeps"
+  }
+}

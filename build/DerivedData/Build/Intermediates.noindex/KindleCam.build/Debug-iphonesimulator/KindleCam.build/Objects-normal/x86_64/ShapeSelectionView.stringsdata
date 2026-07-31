@@ -1,0 +1,16 @@
+{
+  "source": "/Users/aakashsinghranswal/Desktop/projects/KindleCam/KindleCam/Views/Drawing/ShapeSelectionView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Shapes",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 20
+        }
+      }
+    ]
+  },
+  "version": 1
+}

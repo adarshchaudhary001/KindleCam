@@ -1,0 +1,23 @@
+{
+  "/Users/aakashsinghranswal/Desktop/projects/KindleCam/KindleCam/Views/Drawing/DrawingCanvasView.swift" : {
+    "const-values" : "/Users/aakashsinghranswal/Desktop/projects/KindleCam/build/DerivedData/Build/Intermediates.noindex/KindleCam.build/Debug-iphonesimulator/KindleCam.build/Objects-normal/arm64/DrawingCanvasView.swiftconstvalues",
+    "dependencies" : "/Users/aakashsinghranswal/Desktop/projects/KindleCam/build/DerivedData/Build/Intermediates.noindex/KindleCam.build/Debug-iphonesimulator/KindleCam.build/Objects-normal/arm64/DrawingCanvasView.d",
+    "diagnostics" : "/Users/aakashsinghranswal/Desktop/projects/KindleCam/build/DerivedData/Build/Intermediates.noindex/KindleCam.build/Debug-iphonesimulator/KindleCam.build/Objects-normal/arm64/DrawingCanvasView.dia",
+    "object" : "/Users/aakashsinghranswal/Desktop/projects/KindleCam/build/DerivedData/Build/Intermediates.noindex/KindleCam.build/Debug-iphonesimulator/KindleCam.build/Objects-normal/arm64/DrawingCanvasView.o",
+    "swift-dependencies" : "/Users/aakashsinghranswal/Desktop/projects/KindleCam/build/DerivedData/Build/Intermediates.noindex/KindleCam.build/Debug-iphonesimulator/KindleCam.build/Objects-normal/arm64/DrawingCanvasView.swiftdeps"
+  },
+  "/Users/aakashsinghranswal/Desktop/projects/KindleCam/KindleCam/Views/Drawing/ShapeSelectionView.swift" : {
+    "const-values" : "/Users/aakashsinghranswal/Desktop/projects/KindleCam/build/DerivedData/Build/Intermediates.noindex/KindleCam.build/Debug-iphonesimulator/KindleCam.build/Objects-normal/arm64/ShapeSelectionView.swiftconstvalues",
+    "dependencies" : "/Users/aakashsinghranswal/Desktop/projects/KindleCam/build/DerivedData/Build/Intermediates.noindex/KindleCam.build/Debug-iphonesimulator/KindleCam.build/Objects-normal/arm64/ShapeSelectionView.d",
+    "diagnostics" : "/Users/aakashsinghranswal/Desktop/projects/KindleCam/build/DerivedData/Build/Intermediates.noindex/KindleCam.build/Debug-iphonesimulator/KindleCam.build/Objects-normal/arm64/ShapeSelectionView.dia",
+    "object" : "/Users/aakashsinghranswal/Desktop/projects/KindleCam/build/DerivedData/Build/Intermediates.noindex/KindleCam.build/Debug-iphonesimulator/KindleCam.build/Objects-normal/arm64/ShapeSelectionView.o",
+    "swift-dependencies" : "/Users/aakashsinghranswal/Desktop/projects/KindleCam/build/DerivedData/Build/Intermediates.noindex/KindleCam.build/Debug-iphonesimulator/KindleCam.build/Objects-normal/arm64/ShapeSelectionView.swiftdeps"
+  },
+  "/Users/aakashsinghranswal/Desktop/projects/KindleCam/KindleCam/Views/Home/HomeScreenView.swift" : {
+    "const-values" : "/Users/aakashsinghranswal/Desktop/projects/KindleCam/build/DerivedData/Build/Intermediates.noindex/KindleCam.build/Debug-iphonesimulator/KindleCam.build/Objects-normal/arm64/HomeScreenView.swiftconstvalues",
+    "dependencies" : "/Users/aakashsinghranswal/Desktop/projects/KindleCam/build/DerivedData/Build/Intermediates.noindex/KindleCam.build/Debug-iphonesimulator/KindleCam.build/Objects-normal/arm64/HomeScreenView.d",
+    "diagnostics" : "/Users/aakashsinghranswal/Desktop/projects/KindleCam/build/DerivedData/Build/Intermediates.noindex/KindleCam.build/Debug-iphonesimulator/KindleCam.build/Objects-normal/arm64/HomeScreenView.dia",
+    "object" : "/Users/aakashsinghranswal/Desktop/projects/KindleCam/build/DerivedData/Build/Intermediates.noindex/KindleCam.build/Debug-iphonesimulator/KindleCam.build/Objects-normal/arm64/HomeScreenView.o",
+    "swift-dependencies" : "/Users/aakashsinghranswal/Desktop/projects/KindleCam/build/DerivedData/Build/Intermediates.noindex/KindleCam.build/Debug-iphonesimulator/KindleCam.build/Objects-normal/arm64/HomeScreenView.swiftdeps"
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "source": "/Users/aakashsinghranswal/Desktop/projects/KindleCam/KindleCam/Views/CameraStory/TaskInteractiveView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "❓",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 52
+        }
+      },
+      {
+        "comment": "",
+        "key": "🔢",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 131
+        }
+      },
+      {
+        "comment": "",
+        "key": "⭐",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 149
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 162
+        }
+      },
+      {
+        "comment": "",
+        "key": "That's my answer! ✅",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 184
+        }
+      },
+      {
+        "comment": "",
+        "key": "Tapped: %lld / %lld",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 246
+        }
+      },
+      {
+        "comment": "",
+        "key": "👆",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 231
+        }
+      },
+      {
+        "comment": "",
+        "key": "⭐",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 273
+        }
+      }
+    ]
+  },
+  "version": 1
+}
