@@ -79,14 +79,12 @@ public struct CreativeDrawingHomeView: View {
                 
                 Spacer()
                 
-                // Action placeholder button
-                Button(action: {
-                    // Feature coming soon
-                }) {
+                // Action button to launch Doodle Studio
+                NavigationLink(destination: DoodleView()) {
                     HStack(spacing: 12) {
                         Image(systemName: "paintbrush.fill")
                             .font(.system(size: 20, weight: .bold))
-                        Text("Start Canvas (Coming Soon)")
+                        Text("Start Creative Doodle Studio")
                             .font(.system(size: 18, weight: .bold, design: .rounded))
                     }
                     .foregroundStyle(.white)

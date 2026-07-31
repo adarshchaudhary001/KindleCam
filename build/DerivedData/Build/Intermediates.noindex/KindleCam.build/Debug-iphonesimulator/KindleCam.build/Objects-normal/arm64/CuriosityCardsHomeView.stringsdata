@@ -1,0 +1,56 @@
+{
+  "source": "/Users/aakashsinghranswal/Desktop/projects/KindleCam/KindleCam/Views/Curiosity/CuriosityCardsHomeView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Curiosity Cards",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 109
+        }
+      },
+      {
+        "comment": "",
+        "key": "Curiosity Cards",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 34
+        }
+      },
+      {
+        "comment": "",
+        "key": "Interactive Q&A Cards",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 38
+        }
+      },
+      {
+        "comment": "",
+        "key": "Explore & Learn",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 62
+        }
+      },
+      {
+        "comment": "",
+        "key": "Discover fun questions, answers, and wonder facts about nature, science, animals, and more!",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 66
+        }
+      },
+      {
+        "comment": "",
+        "key": "Explore Cards (Coming Soon)",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 89
+        }
+      }
+    ]
+  },
+  "version": 1
+}

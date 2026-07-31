@@ -1,20 +1,20 @@
 //
-//  doodle.swift
+//  DoodleObject.swift
 //  KindleCam
 //
-//  Created by Aakash Singh Ranswal on 31/07/26.
+//  Data model representing a template shape for creative doodle drawing.
 //
 
 import Foundation
 
-struct DoodleObject: Identifiable, Hashable {
-    let id: String
-    let assetName: String?
-    let symbolName: String
-    let title: String
-    let ideas: String
+public struct DoodleObject: Identifiable, Hashable {
+    public let id: String
+    public let assetName: String?
+    public let symbolName: String
+    public let title: String
+    public let ideas: String
 
-    init(assetName: String? = nil, symbolName: String, title: String, ideas: String) {
+    public init(assetName: String? = nil, symbolName: String, title: String, ideas: String) {
         self.assetName = assetName
         self.symbolName = symbolName
         self.title = title

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>colors</key>
+	<array/>
+	<key>images</key>
+	<array>
+		<dict>
+			<key>catalogPath</key>
+			<string>/Users/aakashsinghranswal/Desktop/projects/KindleCam/KindleCam/Assets.xcassets</string>
+			<key>objcSymbol</key>
+			<string>ACImageNameCloud</string>
+			<key>relativePath</key>
+			<string>./cloud.imageset</string>
+			<key>swiftSymbol</key>
+			<string>cloud</string>
+		</dict>
+		<dict>
+			<key>catalogPath</key>
+			<string>/Users/aakashsinghranswal/Desktop/projects/KindleCam/KindleCam/Assets.xcassets</string>
+			<key>objcSymbol</key>
+			<string>ACImageNameDrop</string>
+			<key>relativePath</key>
+			<string>./drop.imageset</string>
+			<key>swiftSymbol</key>
+			<string>drop</string>
+		</dict>
+		<dict>
+			<key>catalogPath</key>
+			<string>/Users/aakashsinghranswal/Desktop/projects/KindleCam/KindleCam/Assets.xcassets</string>
+			<key>objcSymbol</key>
+			<string>ACImageNameMoon</string>
+			<key>relativePath</key>
+			<string>./moon.imageset</string>
+			<key>swiftSymbol</key>
+			<string>moon</string>
+		</dict>
+		<dict>
+			<key>catalogPath</key>
+			<string>/Users/aakashsinghranswal/Desktop/projects/KindleCam/KindleCam/Assets.xcassets</string>
+			<key>objcSymbol</key>
+			<string>ACImageNameSpoon</string>
+			<key>relativePath</key>
+			<string>./spoon.imageset</string>
+			<key>swiftSymbol</key>
+			<string>spoon</string>
+		</dict>
+		<dict>
+			<key>catalogPath</key>
+			<string>/Users/aakashsinghranswal/Desktop/projects/KindleCam/KindleCam/Assets.xcassets</string>
+			<key>objcSymbol</key>
+			<string>ACImageNameUmbrella</string>
+			<key>relativePath</key>
+			<string>./umbrella.imageset</string>
+			<key>swiftSymbol</key>
+			<string>umbrella</string>
+		</dict>
+	</array>
+	<key>symbols</key>
+	<array/>
+</dict>
+</plist>
