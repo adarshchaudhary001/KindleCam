@@ -45,12 +45,26 @@ class SoundManager: ObservableObject {
             }
 
             let utterance = AVSpeechUtterance(string: text)
-            utterance.rate = AVSpeechUtteranceDefaultSpeechRate * 0.88
-            utterance.pitchMultiplier = 1.15
-            utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+            // Prefer an installed Premium or Enhanced English voice. These voices
+            // are downloaded in iOS Settings, so a standard English voice remains
+            // a reliable fallback on every device.
+            utterance.voice = self.preferredEnglishVoice()
+            utterance.rate = AVSpeechUtteranceDefaultSpeechRate * 0.96
+            utterance.pitchMultiplier = 1.04
+            utterance.preUtteranceDelay = 0.08
+            utterance.postUtteranceDelay = 0.12
 
             self.synthesizer.speak(utterance)
         }
+    }
+
+    private func preferredEnglishVoice() -> AVSpeechSynthesisVoice? {
+        let englishVoices = AVSpeechSynthesisVoice.speechVoices()
+            .filter { $0.language.lowercased().hasPrefix("en") }
+
+        return englishVoices.max { lhs, rhs in
+            lhs.quality.rawValue < rhs.quality.rawValue
+        } ?? AVSpeechSynthesisVoice(language: "en-US")
     }
 
     /// Plays cheerful sound for correct answer asynchronously
