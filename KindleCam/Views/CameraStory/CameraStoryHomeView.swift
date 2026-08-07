@@ -90,7 +90,8 @@ public struct CameraStoryHomeView: View {
                     
                     Spacer()
                 }
-                .padding(.horizontal)
+                .padding(.leading, 56)
+                .padding(.trailing)
                 .padding(.top, 8)
                 
                 // Hero Card — Start New Adventure

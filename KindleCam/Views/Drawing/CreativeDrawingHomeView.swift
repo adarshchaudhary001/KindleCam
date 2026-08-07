@@ -42,7 +42,8 @@ public struct CreativeDrawingHomeView: View {
                     
                     Spacer()
                 }
-                .padding(.horizontal)
+                .padding(.leading, 56)
+                .padding(.trailing)
                 .padding(.top)
                 
                 Spacer()

@@ -16,17 +16,44 @@ import Observation
 @MainActor
 public final class CuriosityCardsViewModel {
     
+    public enum ViewFilterMode: String, CaseIterable, Identifiable {
+        case explore = "Explore"
+        case answered = "Answered History"
+        case favorites = "Starred"
+        
+        public var id: String { rawValue }
+    }
+    
     // MARK: - Published State
     
     public var allQuestions: [CuriosityQuestion] = []
     public var dailyWonderQuestion: CuriosityQuestion?
     public var curiosityQuestions: [CuriosityQuestion] = []
     public var selectedCategory: String = "All"
+    public var filterMode: ViewFilterMode = .explore
     
     public var answeredQuestionIds: Set<UUID> = []
     public var favoriteQuestionIds: Set<UUID> = []
     
     public var isLoading: Bool = false
+    
+    /// List of all questions answered by the user.
+    public var answeredQuestionsList: [CuriosityQuestion] {
+        let pool = allQuestions.filter { answeredQuestionIds.contains($0.id) }
+        if selectedCategory != "All" {
+            return pool.filter { $0.category.lowercased() == selectedCategory.lowercased() }
+        }
+        return pool
+    }
+    
+    /// List of all starred / favorited questions by the user.
+    public var favoriteQuestionsList: [CuriosityQuestion] {
+        let pool = allQuestions.filter { favoriteQuestionIds.contains($0.id) }
+        if selectedCategory != "All" {
+            return pool.filter { $0.category.lowercased() == selectedCategory.lowercased() }
+        }
+        return pool
+    }
     
     // MARK: - Services & Context
     
@@ -102,8 +129,8 @@ public final class CuriosityCardsViewModel {
         )
     }
     
-    /// Mark a question as answered in SwiftData.
-    public func markAnswered(_ questionId: UUID) {
+    /// Mark a question as answered in SwiftData and cache the AI answer.
+    public func markAnswered(_ questionId: UUID, answer: String? = nil) {
         guard let modelContext else { return }
         
         answeredQuestionIds.insert(questionId)
@@ -115,13 +142,29 @@ public final class CuriosityCardsViewModel {
         
         if let existing = (try? modelContext.fetch(descriptor))?.first {
             existing.viewedDate = Date()
+            if let answer, existing.cachedAnswer == nil {
+                existing.cachedAnswer = answer
+            }
         } else {
-            let interaction = QuestionInteraction(questionId: questionId, viewedDate: Date())
+            let interaction = QuestionInteraction(
+                questionId: questionId,
+                viewedDate: Date(),
+                cachedAnswer: answer
+            )
             modelContext.insert(interaction)
         }
         
         try? modelContext.save()
         updateCuriosityList()
+    }
+    
+    /// Retrieve the cached AI answer for a question from SwiftData.
+    public func getCachedAnswer(for questionId: UUID) -> String? {
+        guard let modelContext else { return nil }
+        let descriptor = FetchDescriptor<QuestionInteraction>(
+            predicate: #Predicate { $0.questionId == questionId }
+        )
+        return (try? modelContext.fetch(descriptor))?.first?.cachedAnswer
     }
     
     /// Toggle favorite status of a question.
@@ -160,7 +203,14 @@ public final class CuriosityCardsViewModel {
     }
     
     /// Generate answer for a question using CuriosityAnswerService.
+    /// Returns the cached answer if one exists; otherwise generates and caches a new one.
     public func fetchAnswer(for question: CuriosityQuestion) async -> String {
-        await answerService.generateAnswer(for: question)
+        // Check for cached answer first
+        if let cached = getCachedAnswer(for: question.id) {
+            return cached
+        }
+        let answer = await answerService.generateAnswer(for: question)
+        markAnswered(question.id, answer: answer)
+        return answer
     }
 }
