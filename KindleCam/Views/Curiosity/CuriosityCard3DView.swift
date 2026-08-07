@@ -60,6 +60,9 @@ public struct CuriosityCard3DView: View {
             isFavorite = viewModel.isFavorite(question.id)
             loadAnswer()
         }
+        .onDisappear {
+            SoundManager.shared.stopAllAudio()
+        }
     }
 
     // MARK: - Front Side (Themed Question)
@@ -254,7 +257,8 @@ public struct CuriosityCard3DView: View {
             HStack(spacing: 12) {
                 // Read aloud button
                 Button(action: {
-                    // Placeholder for audio read-aloud
+                    guard !isLoadingAnswer else { return }
+                    SoundManager.shared.speak(answerText)
                 }) {
                     HStack(spacing: 6) {
                         Image(systemName: "speaker.wave.3.fill")
@@ -268,6 +272,8 @@ public struct CuriosityCard3DView: View {
                     .background(theme.accentColor.opacity(0.10))
                     .clipShape(Capsule())
                 }
+                .buttonStyle(KidPressButtonStyle())
+                .disabled(isLoadingAnswer)
 
                 Spacer()
 
