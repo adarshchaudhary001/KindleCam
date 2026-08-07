@@ -36,15 +36,15 @@ public struct HomeScreenView: View {
                         .padding(.top, isPad ? 20 : 12)
                         .padding(.bottom, isPad ? 16 : 8)
 
-                    // 3 GIANT Feature Cards — Adaptive Geometry Container for Portrait & Landscape
+                    // 4 GIANT Feature Cards — Adaptive Geometry Container for Portrait & Landscape
                     GeometryReader { geo in
                         let isLandscape = geo.size.width > geo.size.height
                         let availW = max(0, geo.size.width - (isPad ? 48 : 24))
                         let availH = max(0, geo.size.height - 20)
 
                         if isLandscape {
-                            // LANDSCAPE: 3 GIANT vertical column cards side-by-side
-                            let cardW = max(0, (availW - 32) / 3)
+                            // LANDSCAPE: 4 vertical column cards side-by-side
+                            let cardW = max(0, (availW - 48) / 4)
 
                             HStack(spacing: 16) {
                                 giantCameraStoryCard(isLandscape: true)
@@ -55,23 +55,31 @@ public struct HomeScreenView: View {
 
                                 giantCuriosityCardsCard(isLandscape: true)
                                     .frame(width: max(0, cardW), height: max(0, availH))
+
+                                giantGamesCard(isLandscape: true)
+                                    .frame(width: max(0, cardW), height: max(0, availH))
                             }
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                         } else {
-                            // PORTRAIT: 3 GIANT horizontal hero cards stacked vertically
-                            let cardH = max(180, (availH - 32) / 3)
+                            // PORTRAIT: 4 horizontal hero cards stacked vertically.
+                            // The fourth card remains reachable on smaller phones by scrolling.
+                            let cardH = max(180, (availH - 48) / 4)
 
-                            VStack(spacing: 16) {
-                                giantCameraStoryCard(isLandscape: false)
-                                    .frame(width: max(0, availW), height: max(0, cardH))
+                            ScrollView(.vertical, showsIndicators: false) {
+                                VStack(spacing: 16) {
+                                    giantCameraStoryCard(isLandscape: false)
+                                        .frame(width: max(0, availW), height: max(0, cardH))
 
-                                giantCreativeDrawingCard(isLandscape: false)
-                                    .frame(width: max(0, availW), height: max(0, cardH))
+                                    giantCreativeDrawingCard(isLandscape: false)
+                                        .frame(width: max(0, availW), height: max(0, cardH))
 
-                                giantCuriosityCardsCard(isLandscape: false)
-                                    .frame(width: max(0, availW), height: max(0, cardH))
+                                    giantCuriosityCardsCard(isLandscape: false)
+                                        .frame(width: max(0, availW), height: max(0, cardH))
+
+                                    giantGamesCard(isLandscape: false)
+                                        .frame(width: max(0, availW), height: max(0, cardH))
+                                }
                             }
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
                         }
                     }
                     .padding(.horizontal, isPad ? 24 : 12)
@@ -161,6 +169,25 @@ public struct HomeScreenView: View {
         }
         .buttonStyle(KidPressButtonStyle())
     }
+
+    // MARK: - 4. GIANT Games Card (Native NavigationLink)
+
+    private func giantGamesCard(isLandscape: Bool) -> some View {
+        NavigationLink(destination: GamesHomeView()) {
+            GiantHomeCard(
+                title: "Fun Learning Games",
+                subtitle: "Play exciting games that build counting, memory, words, and more!",
+                iconName: "gamecontroller.fill",
+                badgeText: "PLAY!",
+                badgeColors: [KidColors.sunshineYellow, KidColors.coralPink],
+                gradientColors: [KidColors.skyBlue, KidColors.cosmicPurpleEnd],
+                buttonText: "Play Games",
+                graphicType: .gameController,
+                isLandscape: isLandscape
+            )
+        }
+        .buttonStyle(KidPressButtonStyle())
+    }
 }
 
 // MARK: - GIANT Home Feature Card Component (Big Hero Titles & Zero Overlap)
@@ -177,7 +204,7 @@ private struct GiantHomeCard: View {
     let isLandscape: Bool
 
     enum CardGraphicType {
-        case cameraLens, paintPalette, cardStack
+        case cameraLens, paintPalette, cardStack, gameController
     }
 
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
@@ -374,6 +401,20 @@ private struct GiantHomeCard: View {
 
                 SparkleVector(size: 18, color: KidColors.sunshineYellow)
                     .offset(x: size * 0.40, y: -size * 0.40)
+            }
+
+        case .gameController:
+            ZStack {
+                Circle()
+                    .fill(.white.opacity(0.15))
+                    .frame(width: size, height: size)
+
+                Image(systemName: "gamecontroller.fill")
+                    .font(.system(size: max(1, size * 0.58), weight: .bold))
+                    .foregroundStyle(.white.opacity(0.88))
+
+                SparkleVector(size: 18, color: KidColors.sunshineYellow)
+                    .offset(x: size * 0.38, y: -size * 0.38)
             }
         }
     }
